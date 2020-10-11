@@ -4,11 +4,11 @@ class Module(object):
     def __init__(self,name):
         self.name = name
     
-    def begin(self,collector):
+    def begin(self,dataset,cfg):
         pass
 
-    def end(self,collector):
+    def end(self,dataset,cfg):
         pass
 
-    def analyze(self,data,collector):
+    def analyze(self,data,dataset,cfg):
         pass

@@ -16,8 +16,8 @@ class Analyzer(object):
         if cfg.verbose:
             print(self.header)
 
-    def loop(self,cfg,modules,collector,progressbar): 
+    def loop(self,cfg,progressbar): 
         for d in self.dataset_list:
             for i,c in enumerate(d.componentList):
                 taskname = d.name+"_"+str(i)
-                c.loop(taskname,cfg,d,modules,collector,progressbar) 
+                c.loop(taskname,cfg,d,progressbar) 
