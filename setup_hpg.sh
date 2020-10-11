@@ -3,4 +3,4 @@ export PATH=${PATH}:${PWD}/bin/
 
 export BASE_PATH=${PWD}
 
-module load cuda python3
+module load git cuda python3

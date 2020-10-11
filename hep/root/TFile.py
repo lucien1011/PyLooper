@@ -14,12 +14,13 @@ class TFile(object):
 
     def loop(self,taskname,cfg,dataset,progressbar):
         report = ProgressReport(taskname,0,self.tree.numentries)
+        batches = [cfg.entrysteps for i in range(int(self.tree.numentries/cfg.entrysteps))]+[self.tree.numentries%cfg.entrysteps]
         for m in cfg.modules:
             m.begin(dataset,cfg)
-        for data in self.tree.iterate(cfg.branches, entrysteps=cfg.entrysteps,namedecode=cfg.namedecode,):
+        for ibatch,data in enumerate(self.tree.iterate(cfg.branches, entrysteps=cfg.entrysteps,namedecode=cfg.namedecode,)):
             for m in cfg.modules:
                 m.analyze(data,dataset,cfg)
-            report.done += cfg.entrysteps
+            report.done += batches[ibatch]
             progressbar.present(report)
         for m in cfg.modules:
             m.end(dataset,cfg)
