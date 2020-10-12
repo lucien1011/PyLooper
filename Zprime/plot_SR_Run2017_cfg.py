@@ -1,7 +1,7 @@
 from Common.Dataset import Dataset
 from Common.Collector import Collector
 
-from Zprime.Dataset.Run2017.SkimMC import qqZZ
+from Zprime.Dataset.Run2017.SkimMC import qqZZ,ggZZ
 from Zprime.Dataset.Run2017.SkimData import data2017
 
 from hep.cms.Weighter.CrossSectionWeighter import CrossSectionWeighter
@@ -35,6 +35,7 @@ namedecode = "utf-8"
 
 dataset_list = [
         qqZZ,
+        ggZZ,
         data2017,
         ]
 for d in dataset_list:

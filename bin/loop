@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-python ${BASE_PATH}/run.py "$@"
+python ${BASE_PATH}/loop.py "$@"

@@ -12,3 +12,6 @@ class Module(object):
 
     def analyze(self,data,dataset,cfg):
         pass
+
+    def sumup(self,cfg):
+        pass

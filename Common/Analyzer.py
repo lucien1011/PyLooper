@@ -20,4 +20,8 @@ class Analyzer(object):
         for d in self.dataset_list:
             for i,c in enumerate(d.componentList):
                 taskname = d.name+"_"+str(i)
-                c.loop(taskname,cfg,d,progressbar) 
+                c.loop(taskname,cfg,d,progressbar)
+
+    def sumup(self,cfg):
+        for m in cfg.modules:
+            m.sumup(cfg)
