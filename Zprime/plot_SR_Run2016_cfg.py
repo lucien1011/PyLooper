@@ -1,8 +1,8 @@
 from Common.Dataset import Dataset
 from Common.Collector import Collector
 
-from Zprime.Dataset.Run2017.SkimMC import qqZZ,ggZZ
-from Zprime.Dataset.Run2017.SkimData import data2017
+from Zprime.Dataset.Run2016.SkimMC import qqZZ,ggZZ
+from Zprime.Dataset.Run2016.SkimData import data2016
 
 from hep.cms.Weighter.CrossSectionWeighter import CrossSectionWeighter
 
@@ -36,13 +36,13 @@ namedecode = "utf-8"
 dataset_list = [
         qqZZ,
         ggZZ,
-        data2017,
+        data2016,
         ]
 for d in dataset_list:
-    d.lumi = 41.7*1000.
+    d.lumi = 35.9*1000.
 
 collector = Collector(
-        output_path = "./output/2020-10-12_plot_SR_Run2017_cfg/",
+        output_path = "./output/2020-10-12_plot_SR_Run2016_cfg/",
         )
 
 plots = [
