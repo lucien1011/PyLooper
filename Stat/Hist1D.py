@@ -1,5 +1,7 @@
 import numpy as np
 
+import copy
+
 class Hist1D(object):
 
     def __init__(self, nbins, xlow, xhigh):
@@ -16,6 +18,15 @@ class Hist1D(object):
         self.content += content
         self.error2 += np.square(content)
 
+    def __add__(self,other):
+        if self.nbins != other.nbins: raise RuntimeError
+        if self.xlow != other.xlow: raise RuntimeError
+        if self.xhigh != other.xhigh: raise RuntimeError
+        copyme = copy.deepcopy(self)
+        copyme.content += other.content
+        copyme.error2 += other.error2
+        return copyme
+
     @property
     def data(self):
         return self.bins, self.content
@@ -28,10 +39,9 @@ class Hist1D(object):
     def numpy_error2(self):
         return np.reshape(np.array(self.content),(len(self.content),1))
 
-
     @property
     def numpy_edges(self):
-        return np.reshape(np.array(self.edges[:-1]),(len(self.edges[:-1]),1))
+        return np.reshape(np.array(self.edges),(len(self.edges),1))
 
     @property
     def numpy_centers(self):

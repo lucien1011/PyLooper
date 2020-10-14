@@ -1,5 +1,6 @@
-import os,pickle
+import os,pickle,copy,operator
 import numpy as np
+from functools import reduce
 
 import matplotlib
 matplotlib.use('Agg')
@@ -10,18 +11,23 @@ from Common.Module import Module
 from Utils.mkdir_p import mkdir_p 
 
 class RunPlotter(Module):
+    def begin(self,dataset,cfg):
+        dataset.hist_dict = {}
+        for p in cfg.plots:
+            dataset.hist_dict[p] = copy.deepcopy(p.hist)
+
     def analyze(self,data,dataset,cfg):
         for p in cfg.plots:
             array_to_fill = p.array_func(data,dataset,cfg)
             event_weight_to_fill = p.event_weight_func(data,dataset,cfg)
-            p.hist.fill(array_to_fill,event_weight_to_fill)
+            dataset.hist_dict[p].fill(array_to_fill,event_weight_to_fill)
 
     def end(self,dataset,cfg):
         output_dir = self._create_pickle_dir(cfg,dataset) 
         mkdir_p(output_dir)
         for p in cfg.plots:
             f = open(self._create_pickle_path(cfg,dataset,p),"wb")
-            pickle.dump(p.hist,f)
+            pickle.dump(dataset.hist_dict[p],f)
 
     def _create_pickle_dir(self,cfg,dataset):
         return os.path.join(cfg.collector.output_path,dataset.name)
@@ -36,12 +42,21 @@ class RunPlotter(Module):
     def sumup(self,cfg):
         for p in cfg.plots:
             self._read_pickle_hist(cfg,p)
-            mc_list = [d for d in cfg.dataset_list if d.isMC]
+            if cfg.merged_dataset_list:
+                self.add_dataset(cfg,p)
+                mc_list = [d for d in cfg.merged_dataset_list if d.isMC]
+            else:
+                mc_list = [d for d in cfg.dataset_list if d.isMC]
             data_list = [d for d in cfg.dataset_list if d.isData]
             if mc_list and data_list and p.dim == 1:
                 self.plot_data_mc_1d(cfg,mc_list,data_list,p)
             else:
                 raise RuntimeError
+
+    def add_dataset(self,cfg,p):
+        if cfg.merged_dataset_list:
+            for mc in cfg.merged_dataset_list:
+                mc.hist = reduce(operator.add,[d.hist for d in mc.sample_list])
 
     def plot_data_mc_1d(self,cfg,mc_list,data_list,p,):
         plt.clf()
@@ -56,13 +71,14 @@ class RunPlotter(Module):
         mc_bin_content = np.concatenate([mc.hist.numpy_content for mc in mc_list],axis=1)
         mc_bin_error2 = np.concatenate([mc.hist.numpy_error2 for mc in mc_list],axis=1)
         mc_bin_edges = np.concatenate([mc.hist.numpy_edges for mc in mc_list],axis=1)
+        mc_bin_centers = np.concatenate([mc.hist.numpy_centers for mc in mc_list],axis=1)
 
         data_bin_content = np.concatenate([data.hist.numpy_content for data in data_list],axis=1)
         data_bin_edges = data_list[0].hist.numpy_edges
         data_bin_centers = data_list[0].hist.numpy_centers
         data_total_bin_content = np.sum(data_bin_content,axis=1)
-
-        ax1.hist(mc_bin_edges, bins=nbins, weights=mc_bin_content,stacked=True,label=[mc.plot_name for mc in mc_list])
+ 
+        ax1.hist(mc_bin_centers, bins=mc_bin_edges[:,0], weights=mc_bin_content,stacked=True,label=[mc.plot_name for mc in mc_list])
         data_bin_error = self.make_data_error(data_total_bin_content) 
         ax1.errorbar(data_bin_centers, data_total_bin_content, yerr=data_bin_error, marker=".", linestyle="None", color=p.data_color,)
         ax1.legend(loc='best')

@@ -1,15 +1,15 @@
 from Common.Dataset import Dataset
 from Common.Collector import Collector
 
-from Zprime.Dataset.Run2016.SkimMC import qqZZ,ggZZ
-from Zprime.Dataset.Run2016.SkimData import data2016
+from Zprime.Dataset.Run2017.SkimMC import qqZZ,ggZZ
+from Zprime.Dataset.Run2017.SkimData import data2017
 
 from hep.cms.Weighter.CrossSectionWeighter import CrossSectionWeighter
 
 from Stat.Hist1D import Hist1D
 
-from hep.RunPlotter.RunPlotter import RunPlotter
-from hep.RunPlotter.Plot import Plot
+from RunPlotter.RunPlotter import RunPlotter
+from RunPlotter.Plot import Plot
 
 from Zprime.Skimmer.AnalysisSkimmer import SignalRegionSkimmer
 from Zprime.Weighter.DataMCWeighter import DataMCWeighter
@@ -36,13 +36,13 @@ namedecode = "utf-8"
 dataset_list = [
         qqZZ,
         ggZZ,
-        data2016,
+        data2017,
         ]
 for d in dataset_list:
-    d.lumi = 35.9*1000.
+    d.lumi = 41.7*1000.
 
 collector = Collector(
-        output_path = "./output/2020-10-12_plot_SR_Run2016_cfg/",
+        output_path = "./output/2020-10-12_plot_SR_Run2017_cfg/",
         )
 
 plots = [
