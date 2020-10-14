@@ -14,7 +14,7 @@ from hep.RunPlotter.Plot import Plot
 from Zprime.Skimmer.AnalysisSkimmer import SignalRegionSkimmer
 from Zprime.Weighter.DataMCWeighter import DataMCWeighter
 
-branches = [
+branches    = [
                 "mass4l",
                 "massZ1",
                 "massZ2",
@@ -29,9 +29,9 @@ branches = [
                 "idL3",
                 "idL4",
                 ]
-verbose = True
-entrysteps = 1024*10
-namedecode = "utf-8" 
+verbose     = True
+entrysteps  = 1024*10
+namedecode  = "utf-8" 
 
 dataset_list = [
         qqZZ,
@@ -40,6 +40,7 @@ dataset_list = [
         ]
 for d in dataset_list:
     d.lumi = 35.9*1000.
+    d.branches = branches
 
 collector = Collector(
         output_path = "./output/2020-10-12_plot_SR_Run2016_cfg/",
