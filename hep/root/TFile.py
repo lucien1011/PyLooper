@@ -18,6 +18,7 @@ class TFile(object):
         for m in cfg.modules:
             m.begin(dataset,cfg)
         for ibatch,data in enumerate(self.tree.iterate(dataset.branches, entrysteps=cfg.entrysteps,namedecode=cfg.namedecode,)):
+            cfg.ibatch = batches[ibatch] 
             for m in cfg.modules:
                 m.analyze(data,dataset,cfg)
             report.done += batches[ibatch]
