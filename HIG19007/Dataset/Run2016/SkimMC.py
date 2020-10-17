@@ -130,3 +130,20 @@ mc_bkg_samples = [
         WminusH,
         ZH,
         ]
+for b in mc_bkg_samples:
+    b.branches = [
+                "mass4l",
+                "massZ1",
+                "massZ2",
+                "genWeight",
+                "passedFullSelection",
+                "passedZXCRSelection",
+                "dataMCWeight",
+                "pileupWeight",
+                "k_qqZZ_qcd_M",
+                "k_qqZZ_ewk",
+                "idL1",
+                "idL2",
+                "idL3",
+                "idL4",
+                ]
