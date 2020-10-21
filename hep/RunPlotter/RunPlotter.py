@@ -77,18 +77,18 @@ class RunPlotter(Module):
         return data_bin_content,data_bin_edges,data_bin_centers
 
     def plot_mc_1d(self,cfg,mc_list,signal_list,p):
-        plot.clf()
+        plt.clf()
 
         fig = plt.figure(constrained_layout=False,figsize=(10,13),)
         gs = fig.add_gridspec(10,1)
         
         mc_bin_content,mc_bin_error2,mc_bin_edges,mc_bin_centers = self.make_mc_array_1d(mc_list)
 
-        ax1.hist(mc_bin_centers, bins=mc_bin_edges[:,0], weights=mc_bin_content,stacked=True,label=[mc.plot_name+": {:.2f}".format(np.sum(mc.hist.content),) for mc in mc_list])
+        plt.hist(mc_bin_centers, bins=mc_bin_edges[:,0], weights=mc_bin_content,stacked=True,label=[mc.plot_name+": {:.2f}".format(np.sum(mc.hist.content),) for mc in mc_list])
                         
         for sig in signal_list:
-            ax1.hist(sig.hist.numpy_centers, bins=sig.hist.numpy_edges[:,0], weights=sig.hist.numpy_content,label=sig.plot_name+": {:.2f}".format(np.sum(sig.hist.content),),histtype='step',linewidth=2,)
-        ax1.legend(loc='best')
+            plt.hist(sig.hist.numpy_centers, bins=sig.hist.numpy_edges[:,0], weights=sig.hist.numpy_content,label=sig.plot_name+": {:.2f}".format(np.sum(sig.hist.content),),histtype='step',linewidth=2,)
+        plt.legend(loc='best')
 
         output_path = os.path.join(cfg.collector.output_path,p.name+".png")
         fig.savefig(output_path)
