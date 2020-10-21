@@ -1,3 +1,5 @@
+import numpy as np
+
 from Common.Dataset import Dataset
 from Common.Collector import Collector
 
@@ -30,7 +32,9 @@ branches    = [
                 "idL4",
                 ]
 verbose     = True
-entrysteps  = 1024*10
+nblock      = 1024
+ngrid       = 10
+entrysteps  = nblock*ngrid
 namedecode  = "utf-8" 
 
 dataset_list = [
@@ -38,18 +42,19 @@ dataset_list = [
         ggZZ,
         data2016,
         ]
+merged_dataset_list = []
 for d in dataset_list:
     d.lumi = 35.9*1000.
     d.branches = branches
 
 collector = Collector(
-        output_path = "./output/2020-10-12_plot_SR_Run2016_cfg/",
+        output_path = "./output/2020-10-14_plot_SR_Run2016_cfg/",
         )
 
 plots = [
-        Plot("mZ1",lambda data,dataset,cfg: data["massZ1"],lambda data,dataset,cfg: cfg.collector.event_weight,hist=Hist1D(120,0.,120.),), 
+        Plot("mZ1",lambda data,dataset,cfg: data["massZ1"],lambda data,dataset,cfg: cfg.collector.event_weight,hist=Hist1D(100,0.,100.),), 
         Plot("mZ2",lambda data,dataset,cfg: data["massZ2"],lambda data,dataset,cfg: cfg.collector.event_weight,hist=Hist1D(60,0.,60.),), 
-        Plot("m4l",lambda data,dataset,cfg: data["mass4l"],lambda data,dataset,cfg: cfg.collector.event_weight,hist=Hist1D(130,70.,200.),), 
+        Plot("m4l",lambda data,dataset,cfg: data["mass4l"],lambda data,dataset,cfg: cfg.collector.event_weight,hist=Hist1D(40,70.,110.),), 
         ]
 
 modules = [

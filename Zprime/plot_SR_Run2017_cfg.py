@@ -38,17 +38,18 @@ dataset_list = [
         ggZZ,
         data2017,
         ]
+merged_dataset_list = []
 for d in dataset_list:
     d.lumi = 41.7*1000.
 
 collector = Collector(
-        output_path = "./output/2020-10-12_plot_SR_Run2017_cfg/",
+        output_path = "./output/2020-10-14_plot_SR_Run2017_cfg/",
         )
 
 plots = [
-        Plot("mZ1",lambda data,dataset,cfg: data["massZ1"],lambda data,dataset,cfg: cfg.collector.event_weight,hist=Hist1D(120,0.,120.),), 
+        Plot("mZ1",lambda data,dataset,cfg: data["massZ1"],lambda data,dataset,cfg: cfg.collector.event_weight,hist=Hist1D(100,0.,100.),), 
         Plot("mZ2",lambda data,dataset,cfg: data["massZ2"],lambda data,dataset,cfg: cfg.collector.event_weight,hist=Hist1D(60,0.,60.),), 
-        Plot("m4l",lambda data,dataset,cfg: data["mass4l"],lambda data,dataset,cfg: cfg.collector.event_weight,hist=Hist1D(130,70.,200.),), 
+        Plot("m4l",lambda data,dataset,cfg: data["mass4l"],lambda data,dataset,cfg: cfg.collector.event_weight,hist=Hist1D(40,70.,110.),), 
         ]
 
 modules = [
