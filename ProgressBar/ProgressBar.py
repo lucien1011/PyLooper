@@ -52,12 +52,13 @@ class ProgressBar(object):
         sys.stdout.flush()
 
     def createLine(self, report):
-        nameFieldLength = 32
+        nameFieldLength = 16
         percent = float(report.done)/report.total if report.total > 0 else 1
         bar = (':' * int(percent * 40)).ljust(40, " ")
         percent = round(percent * 100, 2)
         name = report.name[0:nameFieldLength]
-        return " {3:6.2f}% {2:s} | {4:8d} / {5:8d} |:  {0:<{1}s} ".format(name, nameFieldLength, bar, percent, report.done, report.total)
+        misc_str = report.misc_str if report.misc_str else ""
+        return " {3:6.2f}% {2:s} | {4:8d} / {5:8d} |:  {0:<{1}s} | ".format(name, nameFieldLength, bar, percent, report.done, report.total)+report.misc_str
 
     def _need_to_update(self, report):
         if self._time() - self.lastTime > self.interval: return True
