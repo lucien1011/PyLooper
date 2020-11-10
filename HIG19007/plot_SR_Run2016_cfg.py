@@ -16,7 +16,7 @@ from hep.RunPlotter.RunPlotter import RunPlotter
 from hep.RunPlotter.Plot import Plot
 
 from HIG19007.Skimmer.AnalysisSkimmer import SignalRegionSkimmer
-from HIG19007.Weighter.DataMCWeighter import DataMCWeighter,GPUDataMCWeighter
+from HIG19007.Weighter.DataMCWeighter import DataMCWeighter
 from HIG19007.Weighter.FakeRateWeighter import FakeRateWeighter
 
 verbose = True
@@ -47,8 +47,7 @@ plots = [
 modules = [
         CrossSectionWeighter("CrossSection"),
         SignalRegionSkimmer("SignalRegion"),
-        #DataMCWeighter("DataMCWeighter"),
-        GPUDataMCWeighter("DataMCWeighter"),
+        DataMCWeighter("DataMCWeighter"),
         FakeRateWeighter("FakeRateWeighter"),
         RunPlotter("Plot",),
         ]
