@@ -16,6 +16,7 @@ class ProgressReport(object):
         self.name = name
         self.done = done
         self.total = total
+        self.misc_str = ""
 
     def __repr__(self):
         name_value_pairs = (
