@@ -13,7 +13,7 @@ from Site import Site
 
 # ______________________________________________________________________ ||
 verbose         = True
-nepoch          = 100
+nepoch          = 150
 batch_per_tree  = 512
 mass_points     = [1,2,3,4,7,10,15,20,25,30,35,]
 bins            = [float(i)*35./100. for i in range(100+1)]
@@ -21,13 +21,6 @@ branches        = [
                 "mass4l",
                 "massZ1",
                 "massZ2",
-                "genWeight",
-                "passedFullSelection",
-                "passedZXCRSelection",
-                "dataMCWeight",
-                "pileupWeight",
-                "k_qqZZ_qcd_M",
-                "k_qqZZ_ewk",
                 "pTL1",
                 "pTL2",
                 "pTL3",
@@ -55,17 +48,16 @@ elif site.where == site.laptop:
 
 # ______________________________________________________________________ ||
 training_list = [
-        Training(
-            "Training01",
-            ROOTWrapper({m: os.path.join(input_dir,"HToZZdTo4L_M125_MZd%s_eps1e-2_13TeV_madgraph_pythia8.root"%str(m)) for m in mass_points },"passedEvents"),
-            ),
+        Training("Training_m"+str(m1),ROOTWrapper({m2: os.path.join(input_dir,"HToZZdTo4L_M125_MZd%s_eps1e-2_13TeV_madgraph_pythia8.root"%str(m2)) for m2 in mass_points if m1 != m2 },"passedEvents"),)
+        for m1 in [4,7,10,15,20,25,30]
         ]
 
+
 collector = Collector(
-        output_path = "./output/2020-11-10_01/",
+        output_path = "./output/2020-11-11_01/",
         )
 
 modules = [
-        InputModule("InputModule"),
-        MDNModule(11,16,4,tf.keras.optimizers.Adam(),),
+        InputModule("InputModule",scale=35.),
+        MDNModule(11,8,1),
         ]
