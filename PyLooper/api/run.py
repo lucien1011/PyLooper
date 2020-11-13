@@ -14,7 +14,7 @@ def read_cfg(path):
 
 # __________________________________________________________________________________________ ||
 def loop():
-    read_cfg(sys.argv[1])
+    cfg = read_cfg(sys.argv[1])
     if cfg.verbose:
         print("Starting")
     start_time = time.time()
@@ -29,8 +29,8 @@ def loop():
     print("Time used: "+str(elapsed_time)+"s")
 
 # __________________________________________________________________________________________ ||
-def main():
-    read_cfg(sys.argv[1])
+def train():
+    cfg = read_cfg(sys.argv[1])
     if cfg.verbose:
         print("Starting")
     start_time = time.time()
@@ -46,6 +46,7 @@ def main():
 
 # __________________________________________________________________________________________ ||
 def sumup():
+    cfg = read_cfg(sys.argv[1])
     if cfg.verbose:
         print("Starting")
     start_time = time.time()

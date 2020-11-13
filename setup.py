@@ -20,7 +20,7 @@ setup(
     packages = find_packages(exclude=['docs', 'images', 'tests']),
     entry_points={'console_scripts': [
         'loop = PyLooper.api.run:loop',
-        'train = PyLooper.api.run:main',
+        'train = PyLooper.api.run:train',
         'sumup = PyLooper.api.run:sumup',
         ]
         },
