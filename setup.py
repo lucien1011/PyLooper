@@ -17,7 +17,12 @@ setup(
     license = "MIT",
     keywords = "numpy  cuda  matplotlib tensorflow  hep  parallel-computing gpu-computing",
     url = "https://github.com/lucien1011/PyCudaAnalyzer",
-    packages=find_packages(exclude=['docs', 'images', 'tests']),
-    #package_dir={'PyLooper':'PyLooper/'},
+    packages = find_packages(exclude=['docs', 'images', 'tests']),
+    entry_points={'console_scripts': [
+        'loop = PyLooper.api.run:loop',
+        'train = PyLooper.api.run:main',
+        'sumup = PyLooper.api.run:sumup',
+        ]
+        },
     long_description=read('README'),
 )

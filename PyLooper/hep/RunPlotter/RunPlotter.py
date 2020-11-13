@@ -6,9 +6,9 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-from Common.Module import Module
+from PyLooper.Common.Module import Module
 
-from Utils.mkdir_p import mkdir_p 
+from PyLooper.Utils.mkdir_p import mkdir_p 
 
 class RunPlotter(Module):
     def begin(self,dataset,cfg):

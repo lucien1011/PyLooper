@@ -1,7 +1,7 @@
 import numpy as np
 import uproot
 
-from Common.Dataset import Dataset
+from PyLooper.Common.Dataset import Dataset
 
 class CMSDataset(Dataset):
     def __init__(self,name,componentList,xs=None,sumw=None,isMC=True,isSignal=False,lumi=None,plot_name=None,skip_weight=False,branches=[]):

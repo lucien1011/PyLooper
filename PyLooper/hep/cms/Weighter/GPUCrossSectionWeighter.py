@@ -1,6 +1,6 @@
 import numpy as np
 
-from Common.Module import Module
+from PyLooper.Common.Module import Module
 
 import pycuda.autoinit
 import pycuda.driver as drv

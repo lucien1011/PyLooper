@@ -1,6 +1,6 @@
 import uproot
 
-from ProgressBar.ProgressReport import ProgressReport
+from PyLooper.ProgressBar.ProgressReport import ProgressReport
 
 class TFile(object):
     """Wrapper for root file"""
