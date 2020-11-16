@@ -10,13 +10,13 @@ def read(fname):
 
 setup(
     name = "PyLooper",
-    version = "BETA",
+    version = "v0.0.0",
     author = "K. H. Lo",
     author_email = "khl.lucien@gmail.com",
     description = ("A general framework to analyse dataset that cannot be fit into memory in one go"),
     license = "MIT",
     keywords = "numpy  cuda  matplotlib tensorflow  hep  parallel-computing gpu-computing",
-    url = "https://github.com/lucien1011/PyCudaAnalyzer",
+    url = "https://github.com/lucien1011/PyLooper",
     packages = find_packages(exclude=['docs', 'images', 'tests']),
     entry_points={'console_scripts': [
         'loop = PyLooper.api.run:loop',

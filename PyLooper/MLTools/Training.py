@@ -1,9 +1,10 @@
 from PyLooper.ProgressBar.ProgressReport import ProgressReport
 
 class Training(object):
-    def __init__(self,name,data_wrapper):
+    def __init__(self,name,data_wrapper,optimizer,):
         self.name = name
         self.data_wrapper = data_wrapper
+        self.optimizer = optimizer
 
     def build(self):
         self.data_wrapper.build()
