@@ -2,7 +2,7 @@ import os,sys,importlib,time
 
 from PyLooper.common.Analyzer import Analyzer
 
-from PyLooper.progressBar.ProgressBar import ProgressBar
+from PyLooper.progressbar.ProgressBar import ProgressBar
 
 from PyLooper.utils.mkdir_p import mkdir_p
 

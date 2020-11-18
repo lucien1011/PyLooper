@@ -1,4 +1,4 @@
-from PyLooper.common.dataset import Dataset
+from PyLooper.common.Dataset import Dataset
 
 class MergedCMSDataset(Dataset):
     def __init__(self,name,isMC=True,isSignal=False,sample_list=[],plot_name=None,):
