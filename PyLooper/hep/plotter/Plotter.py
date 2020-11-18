@@ -6,11 +6,11 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-from PyLooper.Common.Module import Module
+from PyLooper.common.Module import Module
 
-from PyLooper.Utils.mkdir_p import mkdir_p 
+from PyLooper.utils.mkdir_p import mkdir_p 
 
-class RunPlotter(Module):
+class Plotter(Module):
     def begin(self,dataset,cfg):
         dataset.hist_dict = {}
         for p in cfg.plots:

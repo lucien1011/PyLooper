@@ -1,10 +1,10 @@
 import os,sys,importlib,time
 
-from PyLooper.Common.Analyzer import Analyzer
+from PyLooper.common.Analyzer import Analyzer
 
-from PyLooper.ProgressBar.ProgressBar import ProgressBar
+from PyLooper.progressBar.ProgressBar import ProgressBar
 
-from PyLooper.Utils.mkdir_p import mkdir_p
+from PyLooper.utils.mkdir_p import mkdir_p
 
 def read_cfg(path):
     spec = importlib.util.spec_from_file_location("configuration", path)

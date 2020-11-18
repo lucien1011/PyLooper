@@ -1,4 +1,4 @@
-from PyLooper.Utils.mkdir_p import mkdir_p
+from PyLooper.utils.mkdir_p import mkdir_p
 
 class Collector(object):
     def __init__(self,output_path):
