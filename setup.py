@@ -10,7 +10,7 @@ def read(fname):
 
 setup(
     name = "PyLooper",
-    version = "v0.0.0",
+    version = "v0.0.1",
     author = "K. H. Lo",
     author_email = "khl.lucien@gmail.com",
     description = ("A general framework to analyse dataset that cannot be fit into memory in one go"),
