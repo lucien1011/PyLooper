@@ -82,9 +82,9 @@ class Plotter(Module):
         fig = plt.figure(constrained_layout=False,figsize=(10,13),)
         gs = fig.add_gridspec(10,1)
         
-        mc_bin_content,mc_bin_error2,mc_bin_edges,mc_bin_centers = self.make_mc_array_1d(mc_list)
-
-        plt.hist(mc_bin_centers, bins=mc_bin_edges[:,0], weights=mc_bin_content,stacked=True,label=[mc.plot_name+": {:.2f}".format(np.sum(mc.hist.content),) for mc in mc_list])
+        if mc_list:
+            mc_bin_content,mc_bin_error2,mc_bin_edges,mc_bin_centers = self.make_mc_array_1d(mc_list)
+            plt.hist(mc_bin_centers, bins=mc_bin_edges[:,0], weights=mc_bin_content,stacked=True,label=[mc.plot_name+": {:.2f}".format(np.sum(mc.hist.content),) for mc in mc_list])
                         
         for sig in signal_list:
             plt.hist(sig.hist.numpy_centers, bins=sig.hist.numpy_edges[:,0], weights=sig.hist.numpy_content,label=sig.plot_name+": {:.2f}".format(np.sum(sig.hist.content),),histtype='step',linewidth=2,)
