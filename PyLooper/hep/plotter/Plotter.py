@@ -52,7 +52,7 @@ class Plotter(Module):
             signal_list = [d for d in cfg.dataset_list if d.isSignal]
             if mc_list and data_list and p.dim == 1:
                 self.plot_data_mc_1d(cfg,mc_list,data_list,signal_list,p)
-            elif mc_list and not data_list and p.dim == 1:
+            elif (mc_list or signal_list) and not data_list and p.dim == 1:
                 self.plot_mc_1d(cfg,mc_list,signal_list,p)
             else:
                 raise RuntimeError
